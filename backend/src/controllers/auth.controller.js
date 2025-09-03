@@ -18,7 +18,17 @@ async function registerUser(req, res){
     const token = jwt.sign({id: user._id}, "c5b9c6fc5007682b6fe4d5d31901ca7d");
 
     res.cookie("token", token);
-
-    res.status(201).json({message: "User registered successfully", user});
-
+    
+    res.status(201).json({message: "User registered successfully", user:
+        {
+            id: user._id,
+            fullName: user.fullName,
+            email: user.email
+        }
+    });
 }
+
+async function loginUser(req, res){
+}
+
+module.exports={registerUser, loginUser};
